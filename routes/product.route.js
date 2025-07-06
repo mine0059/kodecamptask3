@@ -7,11 +7,11 @@ router.get('/', getProducts);
 
 router.get('/:id', getProductById);
 
-router.post('/product', addProduct);
+router.post('/', addProduct);
 
 router.patch('/:id', editProduct);
 
-router.patch('/product-status/:id', editProductStatus);
+router.patch('/:id/:status', editProductStatus);
 
 router.delete('/:id', deleteProduct);
 

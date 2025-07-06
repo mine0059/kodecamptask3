@@ -42,14 +42,15 @@ const getProductById = (req, res) => {
 
 const addProduct = (req, res) => {
     const { productName, cost, status } = req.body;
-    const lastProduct = products[products.length -1];
-    const newId = lastProduct.id + 1;
     const allowedStatuses = ['in-stock', 'low-stock', 'out-of-stock'];
 
     if (!allowedStatuses.includes(status)) {
         res.status(400).send("Invalid status provided, please use any of these 'in-stock', 'low-stock', 'out-of-stock'");
         return;
     }
+
+    const lastProduct = products[products.length -1];
+    const newId = lastProduct.id + 1;
 
     const newProduct = {
         id: newId,
@@ -89,23 +90,20 @@ const editProduct = (req, res) => {
 
 const editProductStatus = (req, res) => {
     const id = Number(req.params.id);
-    const status = req.body.status;
-    let product = products.find(product => product.id === id);
-
+    const status = req.params.status;
     const allowedStatuses = ['in-stock', 'low-stock', 'out-of-stock'];
-
-    if (!product) {
-        return res.status(404).send("No product Found");
-    }
 
     if (!allowedStatuses.includes(status)) {
         res.status(400).send("Invalid status provided, please use any of these 'in-stock', 'low-stock', 'out-of-stock'");
         return;
     }
 
-    if (status && status !== product.status) {
-        product.status = status;
+    const product = products.find(product => product.id === id);
+    if (!product) {
+        return res.status(404).send("No product Found");
     }
+
+    product.status = status;
 
     res.status(200).send({
         message: "Product status updated successfully",
@@ -115,14 +113,14 @@ const editProductStatus = (req, res) => {
 
 const deleteProduct = (req, res) => {
     const id = Number(req.params.id);
-    const productIndex = products.findIndex(product => product.id === id);
+    const index = products.findIndex(product => product.id === id);
 
-    if (productIndex === -1) {
-        res.status(404).send("Product not found");
-        return;
+    if (index === -1) {
+        return res.status(404).send("Product not found");
     }
 
-    products.splice(productIndex, 1)[0];
+    products.splice(index, 1);
+    
     res.status(200).send({
         message: "Product deleted successfully",
         products
