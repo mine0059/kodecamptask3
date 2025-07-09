@@ -3,21 +3,21 @@ const products = [
             id: 1,
             productName: 'Nike',
             cost: '#2500',
-            status: 'in-stock',
+            stockStatus: 'in-stock',
             createdAt: new Date()
         },
         {
             id: 2,
             productName: 'Stock jean',
             cost: '#1500',
-            status: 'out-of-stock',
+            stockStatus: 'out-of-stock',
             createdAt: new Date()
         },
         {
             id: 3,
             productName: 'Iphone 3',
             cost: '#1800',
-            status: 'low-stock',
+            stockStatus: 'low-stock',
             createdAt: new Date()
         },
 ]
@@ -41,10 +41,10 @@ const getProductById = (req, res) => {
 }
 
 const addProduct = (req, res) => {
-    const { productName, cost, status } = req.body;
+    const { productName, cost, stockStatus } = req.body;
     const allowedStatuses = ['in-stock', 'low-stock', 'out-of-stock'];
 
-    if (!allowedStatuses.includes(status)) {
+    if (!allowedStatuses.includes(stockStatus)) {
         res.status(400).send("Invalid status provided, please use any of these 'in-stock', 'low-stock', 'out-of-stock'");
         return;
     }
@@ -56,7 +56,7 @@ const addProduct = (req, res) => {
         id: newId,
         productName: productName,
         cost: cost,
-        status: status,
+        stockStatus: stockStatus,
         createdAt: Date.now(), 
     }
 
@@ -90,10 +90,10 @@ const editProduct = (req, res) => {
 
 const editProductStatus = (req, res) => {
     const id = Number(req.params.id);
-    const status = req.params.status;
+    const stockStatus = req.params.stockStatus;
     const allowedStatuses = ['in-stock', 'low-stock', 'out-of-stock'];
 
-    if (!allowedStatuses.includes(status)) {
+    if (!allowedStatuses.includes(stockStatus)) {
         res.status(400).send("Invalid status provided, please use any of these 'in-stock', 'low-stock', 'out-of-stock'");
         return;
     }
@@ -103,7 +103,7 @@ const editProductStatus = (req, res) => {
         return res.status(404).send("No product Found");
     }
 
-    product.status = status;
+    product.stockStatus = stockStatus;
 
     res.status(200).send({
         message: "Product status updated successfully",
