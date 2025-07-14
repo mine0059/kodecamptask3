@@ -11,7 +11,7 @@ router.post('/', addProduct);
 
 router.patch('/:id', editProduct);
 
-router.patch('/:id/:status', editProductStatus);
+router.patch('/:id/:stockStatus', editProductStatus);
 
 router.delete('/:id', deleteProduct);
 
