@@ -4,6 +4,8 @@ const productRouter = require('./routes/product.route');
 const app = express();
 const PORT = 3000;
 
+app.use(express.json());
+
 app.get('/', (req, res) => {
     res.send('We are Live');
 });
