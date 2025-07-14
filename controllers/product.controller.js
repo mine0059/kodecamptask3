@@ -50,14 +50,14 @@ const addProduct = (req, res) => {
     }
 
     const lastProduct = products[products.length -1];
-    const newId = lastProduct.id + 1;
+    const newId = products.length > 0 ? lastProduct.id + 1 : 1;
 
     const newProduct = {
         id: newId,
         productName: productName,
         cost: cost,
         stockStatus: stockStatus,
-        createdAt: Date.now(), 
+        createdAt: new Date() 
     }
 
     products.push(newProduct);
