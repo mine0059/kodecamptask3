@@ -1,0 +1,31 @@
+### Get All Products
+GET http://localhost:3000/api/products
+
+### Get Product By ID
+
+GET http://localhost:3000/api/products/4
+
+### Add Product
+POST http://localhost:3000/api/products
+Content-Type: application/json
+
+{
+    "productName": "Camera",
+    "cost": "#6500",
+    "stockStatus": "in-stock"
+}
+
+### Update Product Details
+PATCH http://localhost:3000/api/products/1
+Content-Type: application/json
+
+{
+    "productName": "Airplane",
+    "cost": "#5000"
+}
+
+### Update Product Status
+PATCH http://localhost:3000/api/products/2/low-stock
+
+### Delete Product
+DELETE http://localhost:3000/api/products/3
