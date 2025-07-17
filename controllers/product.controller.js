@@ -49,11 +49,12 @@ const addProduct = (req, res) => {
         return;
     }
 
-    const lastProduct = products[products.length -1];
-    const newId = products.length > 0 ? lastProduct.id + 1 : 1;
+    const id = Math.floor(Math.random() * 10000);
+    // const lastProduct = products[products.length -1];
+    // const newId = products.length > 0 ? lastProduct.id + 1 : 1;
 
     const newProduct = {
-        id: newId,
+        id: id,
         productName: productName,
         cost: cost,
         stockStatus: stockStatus,
