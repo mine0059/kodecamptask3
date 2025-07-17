@@ -3,7 +3,7 @@ GET http://localhost:3000/api/products
 
 ### Get Product By ID
 
-GET http://localhost:3000/api/products/4
+GET http://localhost:3000/api/products/1
 
 ### Add Product
 POST http://localhost:3000/api/products
@@ -28,4 +28,4 @@ Content-Type: application/json
 PATCH http://localhost:3000/api/products/2/low-stock
 
 ### Delete Product
-DELETE http://localhost:3000/api/products/3
+DELETE http://localhost:3000/api/products/1
